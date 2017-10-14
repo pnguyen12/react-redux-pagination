@@ -1,13 +1,15 @@
 import React from 'react';
 import UserListElement from './UserListElement';
+import {connect} from 'react-redux';
+import {Table} from 'react-bootstrap';
 
-export default class UserList extends React.Component {
+class UserList extends React.Component {
     render() {
         return (
-             <table>
+                <Table bordered hover responsive striped>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th className="test">ID</th>
                             <th>Username</th>
                             <th>Job</th>
                             <th>Edit</th>
@@ -21,11 +23,15 @@ export default class UserList extends React.Component {
                             );
                         })}
                     </tbody>
-                </table>
+                </Table>
         )
     }
 }
 
-UserList.propTypes = {
-    users: React.PropTypes.array.isRequired
+function mapStateToProps(state) {
+    return ({
+        users: state.users
+    })
 }
+
+export default connect(mapStateToProps)(UserList);
