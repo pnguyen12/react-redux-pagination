@@ -18,7 +18,9 @@ for (var i = 0; i < 10; i++) {
 
 // create initial state 
 const initial_state = {
-    users: users
+    users: {
+        list: users,   
+    }
 }
 
 // create redux store

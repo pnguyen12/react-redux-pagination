@@ -1,11 +1,13 @@
 import React from 'react';
 import UserListElement from './UserListElement';
-import {connect} from 'react-redux';
-import {Table} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Table } from 'react-bootstrap';
+import UserDelete from './UserDelete';
 
 class UserList extends React.Component {
     render() {
         return (
+            <div>
                 <Table bordered hover responsive striped>
                     <thead>
                         <tr>
@@ -19,18 +21,20 @@ class UserList extends React.Component {
                     <tbody>
                         {this.props.users.map((user, index) => {
                             return (
-                               <UserListElement user={user} key={user.id}/>
+                                <UserListElement user={user} key={user.id} />
                             );
                         })}
                     </tbody>
                 </Table>
+                <UserDelete />
+            </div>
         )
     }
 }
 
 function mapStateToProps(state) {
     return ({
-        users: state.users
+        users: state.users.list
     })
 }
 
