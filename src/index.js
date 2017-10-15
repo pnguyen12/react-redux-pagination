@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { reducers } from './reducers/index';
 import {Provider} from 'react-redux';
 import './styles/main.css';
+import {browswerHistory, Router, Route, IndexRoute, hashHistory} from 'react-router';
+import {syncHistoryWithStore, routerMiddleware} from 'react-router-redux';
+import Home from './pages/Home';
+import UserEdit from './pages/UserEdit';
+import NotFound from './pages/NotFound';
+import { createBrowserHistory } from 'history';
 
 let users = [];
 
@@ -23,11 +29,18 @@ const initial_state = {
     }
 }
 
-// create redux store
-const store = createStore(reducers, initial_state);
+let middleware = applyMiddleware(routerMiddleware(browswerHistory));
+const store = createStore(reducers, initial_state, middleware);
+const history = syncHistoryWithStore(createBrowserHistory(), store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router history={hashHistory}>
+            <Route path="/" component={App}>
+                <IndexRoute component={Home} />
+            <Route path="user-edit" component={UserEdit} />
+            <Route path="*" component={NotFound} />
+            </Route>
+        </Router>
     </Provider>, document.getElementById('root')
 );
