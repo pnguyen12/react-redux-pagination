@@ -12,10 +12,10 @@ class UserList extends React.Component {
                     <thead>
                         <tr>
                             <th className="test">ID</th>
-                            <th>Username</th>
-                            <th>Job</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th className="test">Username</th>
+                            <th className="test">Job</th>
+                            <th className="test">Edit</th>
+                            <th className="test">Delete</th>
                         </tr>
                     </thead>
                     <tbody>

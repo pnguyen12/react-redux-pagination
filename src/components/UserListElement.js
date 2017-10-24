@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 
+
 class UserListElement extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +30,7 @@ class UserListElement extends React.Component {
                 <td>{user.id}</td>
                 <td>{user.username}</td>
                 <td>{user.job}</td>
-                <td><a href={'/users-edit/' + user.id}><Button className="btn btn-xs glyphicon glyphicon-edit">Edit</Button></a></td>
+                <td><a href={'/user-edit/' + user.id}><Button className="btn btn-xs glyphicon glyphicon-edit">Edit</Button></a></td>
                 <td><Button onClick={this.modalDeleteShow} className="btn-danger btn-xs glyphicon glyphicon-remove-sign" data-id={user.id} data-username={user.username}>Delete</Button></td>
             </tr>
         )
